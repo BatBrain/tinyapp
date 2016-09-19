@@ -1,5 +1,11 @@
 "use strict";
 
+require('dotenv').config();
+app.use(bodyParser.urlencoded());
+app.use("/static", express.static(__dirname + "/pictures"));
+app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
+
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080; // default port 8080
@@ -10,11 +16,6 @@ const MongoClient = require("mongodb").MongoClient;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 
-app.use(bodyParser.urlencoded());
-app.use("/static", express.static(__dirname + "/pictures"));
-app.set("view engine", "ejs");
-app.use(methodOverride("_method"));
-require('dotenv').config();
 
 
 var db = null;
@@ -72,12 +73,12 @@ app.get("/urls/new", (req, res) => {
 // inserts data from ../urls/new form submission and loads back to ../urls page
 app.post("/urls", (req, res) => {
     var prefix = '';
-    if ((`${req.body.longURL}`).search('http://')) {
+    if (`${req.body.longURL}`.search('http://')) {
         prefix = "http://"
     }
     db.collection("urls").insertOne({shortURL: generateRandomString(), longURL: `${prefix}${req.body.longURL}`}, (err) => {
         db.collection("urls").find().toArray((err, data) => {
-            res.render("urls_index", {urls: data});
+            res.render("urls_index", {"urls": data});
         });
     });
 });
