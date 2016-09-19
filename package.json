@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "engines": {
-    "node": "5.10.1"
-  },
   "scripts": {
     "start": "node express_server.js",
+    "start mongo": "sudo mongod --config /etc/mongod.conf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -17,6 +15,7 @@
     "connect": "^3.5.0",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
-    "method-override": "^2.3.6"
+    "method-override": "^2.3.6",
+    "mongodb": "^2.2.10"
   }
 }
