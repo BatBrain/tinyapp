@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        input {
+            font-size: 14px;
+            padding:5px;
+            border:1px solid black;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="padding: 20px;">
+    <h1>ShortURL: <%= shortURL %></h1>
+    <form method="POST" action="/urls/<%= shortURL %>?_method=PUT" style="">
+      <input id="longURL" type="text" name="longURL" placeholder="<%= longURL %>" style="width: 300px">
+      <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
