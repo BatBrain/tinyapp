@@ -87,7 +87,7 @@ app.post("/urls", (req, res, next) => {
     let query = { "shortURL": newShortURL }
     db.collection("urls").findOne(query, (err, data) => {
       if (!data) next();
-      res.render("urls_info", data.shortURL);
+      res.render("urls_info", data);
     });
   });
 });

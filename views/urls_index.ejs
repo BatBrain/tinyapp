@@ -20,7 +20,7 @@
         <tr>
             <td> <%= urls[cv].shortURL %> </td>
             <td><%= urls[cv].longURL %></td>
-            <td><a href="http://localhost:8080/urls/show/<%= urls[cv].shortURL %>">edit</a></td>
+            <td><a href="urls/show/<%= urls[cv].shortURL %>">edit</a></td>
             <td>
             <form method="POST" action="/urls/<%= urls[cv].shortURL %>?_method=DELETE" id="delete <%= urls[cv].shortURL %>">
             <button name="delete" type="submit" form="delete <%= urls[cv].shortURL %>" onclick="alert ('Deleted <%= urls[cv].shortURL %>!')">Delete</button>
