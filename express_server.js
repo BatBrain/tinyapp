@@ -83,11 +83,11 @@ app.post("/urls", (req, res, next) => {
   let newShortURL = generateRandomString();
   let prefacedLongUrl = checkForHttpPrefix(`${req.body.longURL}`);
   db.collection("urls").insertOne({ shortURL: newShortURL, "longURL": prefacedLongUrl }, (err) => {
-      if (err) res.send(err);
+    if (err) res.send(err);
     let query = { "shortURL": newShortURL }
     db.collection("urls").findOne(query, (err, data) => {
       if (!data) next();
-      res.render("urls_info", data);
+      res.redirect(`urls/${newShortURL}`);
     });
   });
 });
