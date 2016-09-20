@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        table, td, th {
+            border: ;
+            text-align: center;
+            border-collapse: collapse;
+            padding: 2px 10px 2px 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Shortened Link</th>
+            <th>Original Link</th>
+        </tr>
+        <tr>
+            <td><%= shortURL %></td>
+            <td><%= longURL %></td>
+            <td><a href="http://localhost:8080/urls/show/<%= shortURL %>">edit</a></td>
+            <td>
+            <form method="POST" action="/urls/<%= shortURL %>?_method=DELETE" id="delete <%= shortURL %>">
+            <button name="delete" type="submit" form="delete <%= shortURL %>" onclick="alert ('Deleted <%= shortURL %>!')">Delete</button>
+            </form>
+            </td>
+        </tr>
+    </table>
+    <a href="http://localhost:8080/urls"> Click here to go back to the index! </a>
+</body>
+</html>
