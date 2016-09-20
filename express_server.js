@@ -59,17 +59,6 @@ function checkForHttpPrefix(string) {
   return `${prefix}${string}`;
 };
 
-//url info page
-app.get("/urls/:id", (req, res) => {
-  let query = { "shortURL": req.params.id };
-  db.collection("urls").findOne(query, (err, result) => {
-    if (result === null) {
-      res.render("not_found", { shortURL: `${req.params.id}` })
-    } else {
-      res.render("urls_info", result);
-    }
-  });
-})
 
 //Landing Page:
 app.get("/", (req, res) => {
@@ -101,6 +90,17 @@ app.post("/urls", (req, res, next) => {
   });
 });
 
+//url info page
+app.get("/urls/:id", (req, res) => {
+  let query = { "shortURL": req.params.id };
+  db.collection("urls").findOne(query, (err, result) => {
+    if (result === null) {
+      res.render("not_found", { shortURL: `${req.params.id}` })
+    } else {
+      res.render("urls_info", result);
+    }
+  });
+})
 
 // Checks if shortURL exists, redirects to longURL if true, ./not_found if not
 app.get("/u/:id", (req, res) => {

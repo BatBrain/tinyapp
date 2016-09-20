@@ -19,7 +19,7 @@
         <tr>
             <td><%= shortURL %></td>
             <td><%= longURL %></td>
-            <td><a href="http://localhost:8080/urls/show/<%= shortURL %>">edit</a></td>
+            <td><a href="/urls/show/<%= shortURL %>">edit</a></td>
             <td>
             <form method="POST" action="/urls/<%= shortURL %>?_method=DELETE" id="delete <%= shortURL %>">
             <button name="delete" type="submit" form="delete <%= shortURL %>" onclick="alert ('Deleted <%= shortURL %>!')">Delete</button>
@@ -27,6 +27,6 @@
             </td>
         </tr>
     </table>
-    <a href="http://localhost:8080/urls"> Click here to go back to the index! </a>
+    <a href="/urls"> Click here to go back to the index! </a>
 </body>
 </html>
