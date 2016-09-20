@@ -85,7 +85,7 @@ app.post("/urls", (req, res, next) => {
       if (err) res.send(err);
     db.collection("urls").find().toArray((err, data) => {
       if (!data) next();
-      res.render("urls_index", { "urls": data });
+      res.render("urls_info", { data });
     });
   });
 });
