@@ -80,12 +80,14 @@ app.get("/urls/new", (req, res) => {
 
 // inserts data from ../urls/new form submission and loads back to ../urls page
 app.post("/urls", (req, res, next) => {
+  let newShortURL = generateRandomString();
   let prefacedLongUrl = checkForHttpPrefix(`${req.body.longURL}`);
-  db.collection("urls").insertOne({ shortURL: generateRandomString(), "longURL": prefacedLongUrl }, (err) => {
+  db.collection("urls").insertOne({ shortURL: newShortURL, "longURL": prefacedLongUrl }, (err) => {
       if (err) res.send(err);
-    db.collection("urls").find().toArray((err, data) => {
+    let query = { "shortURL": newShortURL }
+    db.collection("urls").findOne(query, (err, data) => {
       if (!data) next();
-      res.render("urls_info", { data });
+      res.render("urls_info", data.shortURL);
     });
   });
 });
